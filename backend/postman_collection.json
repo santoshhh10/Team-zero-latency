@@ -1,0 +1,13 @@
+{
+	"info": {"name": "Surplus Food Management API", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},
+	"item": [
+		{"name": "Register", "request": {"method": "POST", "url": "{{baseUrl}}/api/auth/register", "body": {"mode": "raw", "raw": "{\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\",\n  \"password\": \"password123\",\n  \"role\": \"student\"\n}"}, "header": [{"key": "Content-Type", "value": "application/json"}]}},
+		{"name": "Login", "request": {"method": "POST", "url": "{{baseUrl}}/api/auth/login", "body": {"mode": "raw", "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"password123\"\n}"}, "header": [{"key": "Content-Type", "value": "application/json"}]}},
+		{"name": "List Items", "request": {"method": "GET", "url": "{{baseUrl}}/api/items"}},
+		{"name": "Create Item", "request": {"method": "POST", "url": "{{baseUrl}}/api/items", "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}"}]}, "body": {"mode": "raw", "raw": "{\n  \"name\": \"Veg Sandwich Combo\",\n  \"description\": \"Sandwich + Juice\",\n  \"quantityTotal\": 10,\n  \"originalPrice\": 120,\n  \"discountedPrice\": 60,\n  \"bestBefore\": \"2025-08-13T20:00:00.000Z\",\n  \"images\": [],\n  \"veg\": true,\n  \"location\": \"North Campus\",\n  \"availabilityWindow\": { \"start\": \"2025-08-13T18:00:00.000Z\", \"end\": \"2025-08-13T20:00:00.000Z\" }\n}"}, "header": [{"key": "Content-Type", "value": "application/json"}]}},
+		{"name": "Preorder", "request": {"method": "POST", "url": "{{baseUrl}}/api/orders", "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{token}}"}]}, "body": {"mode": "raw", "raw": "{\n  \"itemId\": \"{{itemId}}\",\n  \"quantity\": 1\n}"}, "header": [{"key": "Content-Type", "value": "application/json"}]}},
+		{"name": "Walkin", "request": {"method": "POST", "url": "{{baseUrl}}/api/orders/walkin", "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{canteenToken}}"}]}, "body": {"mode": "raw", "raw": "{\n  \"itemId\": \"{{itemId}}\",\n  \"quantity\": 1\n}"}, "header": [{"key": "Content-Type", "value": "application/json"}]}},
+		{"name": "Scan", "request": {"method": "POST", "url": "{{baseUrl}}/api/orders/scan", "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{canteenToken}}"}]}, "body": {"mode": "raw", "raw": "{\n  \"token\": \"{{qrToken}}\"\n}"}, "header": [{"key": "Content-Type", "value": "application/json"}]}},
+		{"name": "Analytics", "request": {"method": "GET", "url": "{{baseUrl}}/api/admin/analytics", "auth": {"type": "bearer", "bearer": [{"key": "token", "value": "{{adminToken}}"}]}}}
+	]
+}
